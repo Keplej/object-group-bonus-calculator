@@ -97,10 +97,10 @@ const employees = [
 //   }
 // }
 
-// for (let index = 0; index < employees.length; index++) {
-//   bonusCalc = employees[index];
+for (let index = 0; index < employees.length; index++) {
+  bonusCalc = employees[index];
   
-// }
+}
 
 function bonusCalc(employee) {
   let newEmp = {
@@ -129,10 +129,11 @@ function bonusCalc(employee) {
   }else if (newEmp.bonusPercentage < 0) {
     newEmp.bonusPercentage = 0;
   }
-return 
+  newEmp.totalBonus = employee.annualSalary * newEmp.bonusPercentage;
+  newEmp.totalCompensation = employee.annualSalary + newEmp.totalBonus;
 }
 
-console.log(bonusCalc(employees[0]));
+console.log(bonusCalc(employees));
 
 
 //console.log(employees);
