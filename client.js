@@ -97,10 +97,33 @@ const employees = [
 //   }
 // }
 
-for (let index = 0; index < employees.length; index++) {
-  bonusCalc = employees[index];
-  
-}
+//loop
+// for (let index = 0; index < employees.length; index++) {
+//   bonusCalc = employees[index];
+// }
+
+//can do this also
+// function calculateBonus(employee) {
+//   let bonusePercentage = calculateBonusPercentage(employee);
+//   let bonusAmount = bonusPercentage/100 * Number(employee.annualSalary);
+
+//   let employeeBonus = {
+//     name: employee.name,
+//     bonusPercentage: bonusPercentage,
+//     totalCompensation: Number(employee.annualSalary) + bonusAmount,
+//     totalBonus: bonusAmount
+    //The `totalCompensation` property should be the adjusted annual compensation (base annual + bonus)
+    //The `totalBonus` should be the employee's total bonus rounded to the nearest dollar
+//   }
+// }
+
+//loop
+
+// for (let index = 0; index < employees.length; index++) {
+//   bonusCalc = employees[index];
+// }
+
+
 
 function bonusCalc(employee) {
   let newEmp = {
@@ -110,8 +133,8 @@ function bonusCalc(employee) {
     totalBonus: 0
   } //the block of code below is for the percentage number 
   if (employee.reviewRating <= 2) {
-    newEmp.bonusPercentage = 0;
-  } else if (employee.reviewRating === 3) {
+    newEmp.bonusPercentage = 0; //might just return bonusPercentage;
+  } else if (employee.reviewRating === 3) { //not a string so we can triple ===
     newEmp.bonusPercentage = .04;
   } else if (employee.reviewRating === 4) {
     newEmp.bonusPercentage = .06;
@@ -129,14 +152,17 @@ function bonusCalc(employee) {
   }else if (newEmp.bonusPercentage < 0) {
     newEmp.bonusPercentage = 0;
   }
-  newEmp.totalBonus = employee.annualSalary * newEmp.bonusPercentage;
-  newEmp.totalCompensation = employee.annualSalary + newEmp.totalBonus;
+  newEmp.totalBonus = Number(employee.annualSalary) * newEmp.bonusPercentage;
+  newEmp.totalCompensation = Number(employee.annualSalary) + newEmp.totalBonus;
+  
+  return newEmp;
 }
 
-console.log(bonusCalc(employees));
+console.log(bonusCalc(employees[0]));
 
 
-//console.log(employees);
+
+// console.log(employees);
 
 // var jsonObj=[];
 // for (var index = 0; index < content.items.length; index++) {
