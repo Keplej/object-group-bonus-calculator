@@ -125,40 +125,87 @@ const employees = [
 
 
 
+// function bonusCalc(employee) {
+//   let newEmp = {
+//     name: employee.name,
+//     bonusPercentage: 0,
+//     totalCompensation: 0,
+//     totalBonus: 0
+//   } //the block of code below is for the percentage number 
+//   if (employee.reviewRating <= 2) {
+//     newEmp.bonusPercentage = 0; //might just return bonusPercentage;
+//   } else if (employee.reviewRating === 3) { //not a string so we can triple ===
+//     newEmp.bonusPercentage = .04;
+//   } else if (employee.reviewRating === 4) {
+//     newEmp.bonusPercentage = .06;
+//   } else if (employee.reviewRating === 5) {
+//     newEmp.bonusPercentage = .1;
+//   }//the block below is for the percentage of employee number if they qualify
+//   if (employee.employeeNumber == 4 && employee.reviewRating >= 2) {
+//     newEmp.bonusPercentage += .05;
+//   }//this block is for showing salary above 65000
+//   if (employee.annualSalary > 65000) {
+//      newEmp.bonusPercentage -= .01;
+//   }//This block is for showing the peramerters of the pergentage someone can get min 0%  max 13%
+//   if (newEmp.bonusPercentage > .13) {
+//     newEmp.bonusPercentage = .13
+//   }else if (newEmp.bonusPercentage < 0) {
+//     newEmp.bonusPercentage = 0;
+//   }
+//   newEmp.totalBonus = Number(employee.annualSalary) * newEmp.bonusPercentage;
+//   newEmp.totalCompensation = Number(employee.annualSalary) + newEmp.totalBonus;
+  
+//   return newEmp;
+// }
+
+// console.log(bonusCalc(employees[0]));
+
 function bonusCalc(employee) {
-  let newEmp = {
-    name: employee.name,
-    bonusPercentage: 0,
-    totalCompensation: 0,
-    totalBonus: 0
-  } //the block of code below is for the percentage number 
-  if (employee.reviewRating <= 2) {
-    newEmp.bonusPercentage = 0; //might just return bonusPercentage;
-  } else if (employee.reviewRating === 3) { //not a string so we can triple ===
-    newEmp.bonusPercentage = .04;
+  let bonusPercentage = 0;
+
+   if (employee.reviewRating === 3) { //not a string so we can triple ===
+    bonusPercentage += 4;
   } else if (employee.reviewRating === 4) {
-    newEmp.bonusPercentage = .06;
+    bonusPercentage += 6;
   } else if (employee.reviewRating === 5) {
-    newEmp.bonusPercentage = .1;
+    bonusPercentage += 10;
   }//the block below is for the percentage of employee number if they qualify
-  if (employee.employeeNumber == 4 && employee.reviewRating >= 2) {
-    newEmp.bonusPercentage += .05;
+  if (employee.employeeNumber.length == 4 && employee.reviewRating > 2) {
+    bonusPercentage += 5;
   }//this block is for showing salary above 65000
   if (employee.annualSalary > 65000) {
-     newEmp.bonusPercentage -= .01;
+     bonusPercentage -= 1;
   }//This block is for showing the peramerters of the pergentage someone can get min 0%  max 13%
-  if (newEmp.bonusPercentage > .13) {
-    newEmp.bonusPercentage = .13
-  }else if (newEmp.bonusPercentage < 0) {
-    newEmp.bonusPercentage = 0;
+  if (bonusPercentage > 13) {
+    bonusPercentage = 13
+  }else if (bonusPercentage < 0) {
+    bonusPercentage = 0;
   }
-  newEmp.totalBonus = Number(employee.annualSalary) * newEmp.bonusPercentage;
-  newEmp.totalCompensation = Number(employee.annualSalary) + newEmp.totalBonus;
-  
-  return newEmp;
+  return bonusPercentage;
 }
 
-console.log(bonusCalc(employees[0]));
+function bonusPerCalc(employee){
+  let bonusPercentage = bonusCalc(employee);
+  let bonusAmount = bonusPercentage/100 * Number(employee.annualSalary);
+  
+  let newEmp = {
+    name: employee.name,
+    bonusPercentage: bonusPercentage,
+    totalCompensation: Number(employee.annualSalary) + bonusAmount,
+    totalBonus: bonusAmount
+}
+return newEmp;
+}
+for (let person of employees){
+  console.log(bonusPerCalc(person));
+  
+}
+console.log(employees);
+
+
+
+
+
 
 
 
